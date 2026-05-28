@@ -86,13 +86,14 @@ describe('#AWS Event Mocks()', function () {
         merge: {
           Records: [{
             kinesis: {
-              data: new Buffer('kinesis test').toString('base64')
-            }
-          }]
-        }
+              data: new Buffer('kinesis test').toString('base64'),
+            },
+          }],
+        },
       });
 
-      expect(new Buffer(event.Records[0].kinesis.data, 'base64').toString('ascii')).to.equal('kinesis test');
+      const decoded = new Buffer(event.Records[0].kinesis.data, 'base64').toString('ascii');
+      expect(decoded).to.equal('kinesis test');
     });
   });
 });
